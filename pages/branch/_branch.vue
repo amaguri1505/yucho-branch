@@ -1,35 +1,42 @@
 <template>
-  <v-row
+  <v-layout
+    column
+    justify-center
+    align-center
   >
-    <v-col
-      cols="12"
+    <v-flex
+      xs12
     >
       <v-card>
         <v-card-title class="headline">ゆうちょ銀行店名コンバーター</v-card-title>
         <v-card-text>
+          <yucho-result />
+          <p>ゆうちょ銀行口座の記号を振込み用の店名に変換します</p>
+          <p>変換方法は以下のサイトを参考にしています。</p>
           <converter />
-          <yucho-link />
         </v-card-text>
       </v-card>
-    </v-col>
-  </v-row>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
   import Converter from '~/components/Converter.vue'
-  import YuchoLink from '~/components/YuchoLink.vue'
-
+  import YuchoResult from '~/components/YuchoResult.vue'
 
   export default {
     components: {
       Converter,
-      YuchoLink
+      YuchoResult,
     },
     head() {
       return {
         titleTemplate: null,
         title: 'サイト名'
       }
-    }
+    },
+    created() {
+      let branch = this.$route.params.branch;
+    },
   }
 </script>
